@@ -61,9 +61,9 @@ public class AppConfig {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName( com.mysql.jdbc.Driver.class.getName() );
-        dataSource.setUrl( "jdbc:mysql://localhost/customers?enableQueryTimeouts=true" );
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "" );
+        dataSource.setUrl( System.getProperty( "db.url", "jdbc:mysql://localhost:3306/customers?enableQueryTimeouts=true&useSSL=false&allowPublicKeyRetrieval=true" ) );
+        dataSource.setUsername( System.getProperty( "db.username", "root" ) );
+        dataSource.setPassword( System.getProperty( "db.password", "" ) );
 
         return dataSource;
     }
