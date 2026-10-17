@@ -45,8 +45,11 @@ public class BytemanRule extends BMUnitRunner implements MethodRule {
 			@Override
 			public void evaluate() throws Throwable {
 				BMUnitConfigState.pushConfigurationState( config, klass );
-				result.evaluate();
-				BMUnitConfigState.popConfigurationState( klass );
+				try {
+					result.evaluate();
+				} finally {
+					BMUnitConfigState.popConfigurationState( klass );
+				}
 			}
 		};
 	}
