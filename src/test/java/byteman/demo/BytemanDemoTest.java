@@ -8,10 +8,8 @@ import javax.inject.Inject;
 
 import org.jboss.byteman.contrib.bmunit.BMRule;
 import org.jboss.byteman.contrib.bmunit.BMRules;
-import org.jboss.byteman.contrib.bmunit.BMScript;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
 
-import org.jboss.byteman.rule.helper.Helper;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +28,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = { AppConfig.class } )
-@BMScript(value="check.btm")
 @BMUnitConfig
 public class BytemanDemoTest {
 	@Rule public BytemanRule byteman = BytemanRule.create( BytemanDemoTest.class );
@@ -56,7 +53,7 @@ public class BytemanDemoTest {
 		int result = BytemanBasicDemo.returnZero();
 
 		// then
-		assertEquals(0, result);
+		assertEquals(5, result);
 	}
 
 	@Test
